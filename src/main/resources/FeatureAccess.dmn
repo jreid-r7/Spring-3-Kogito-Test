@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_99935616-5B38-4079-98F9-5CC2605023B9" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_2B2806A1-5D1A-4207-99D3-102C715B1B2F" name="FeatureAccess" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_99935616-5B38-4079-98F9-5CC2605023B9">
+  <dmn:extensionElements/>
+  <dmn:itemDefinition id="_CD0DC244-1331-4F1D-B845-FEB2BC00A2AC" name="tEarlyAccessFeature" isCollection="false">
+    <dmn:itemComponent id="_DC2DDFCA-1B0E-4637-B4E1-41FCAE028930" name="Early Access Feature" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_DE6CA2B9-DFD9-4384-A0F5-042673E9C4D7" name="tEarlyAccessFeatures" isCollection="true">
+    <dmn:typeRef>tEarlyAccessFeature</dmn:typeRef>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_81235985-0767-4FB7-8C76-0D796E63F64D" name="tOrgProduct" isCollection="false">
+    <dmn:itemComponent id="_46D0F867-7898-46BD-BF4E-A218712487A4" name="Organization Id" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_0ECC3C0A-B6C8-4366-A706-1E44092898E1" name="Product Codes" isCollection="true">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_9C5633F7-DDCA-4D07-A2C1-5823B0BFBFBA" name="tOrgProducts" isCollection="true">
+    <dmn:typeRef>tOrgProduct</dmn:typeRef>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_DBFB056D-37B6-4490-8ABF-13FBA10FFF88" name="tOrgFeaturePermission" isCollection="false">
+    <dmn:itemComponent id="_A495FD66-2CD4-4D2C-8635-21CD7232D5B4" name="Organization Id" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_B40E7195-4ACD-4E16-8968-CFDF2606C0F4" name="Feature Permissions" isCollection="true">
+      <dmn:typeRef>tFeaturePermission</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_17625CD6-A4BF-4F5C-84DB-87313A66005E" name="tOrgFeaturePermissions" isCollection="true">
+    <dmn:typeRef>tOrgFeaturePermission</dmn:typeRef>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_A617FDEF-921F-442B-9E19-3DC689D22402" name="tFeaturePermission" isCollection="false">
+    <dmn:itemComponent id="_3A83B1A5-D81E-42BE-B4B1-564FF3609721" name="Feature" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_AF62DD84-FD88-4E36-BB8B-B8D8B1113A90" name="Permission" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_DD42551E-AA45-4686-A067-2B3E78961399" name="tFeaturePermissions" isCollection="true">
+    <dmn:typeRef>tFeaturePermission</dmn:typeRef>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_F64B2258-88BC-4A4D-B572-DF7225D65A57" name="tOrgList" isCollection="true">
+    <dmn:typeRef>string</dmn:typeRef>
+  </dmn:itemDefinition>
+  <dmn:inputData id="_A687CFD6-F668-42E5-B2F1-D4613329D61A" name="Org Products">
+    <dmn:extensionElements/>
+    <dmn:variable id="_6C587353-7FC3-42C4-B798-79FE1B51326F" name="Org Products" typeRef="tOrgProducts"/>
+  </dmn:inputData>
+  <dmn:decision id="_22FDA7FD-3895-4341-A510-A2549238B911" name="Orgs with required products">
+    <dmn:extensionElements/>
+    <dmn:variable id="_A1FE7CE5-0109-46EA-9786-8B1E5AB04438" name="Orgs with required products" typeRef="tOrgList"/>
+    <dmn:informationRequirement id="_453F472A-CE47-4392-9DB3-CC7704125A02">
+      <dmn:requiredInput href="#_A687CFD6-F668-42E5-B2F1-D4613329D61A"/>
+    </dmn:informationRequirement>
+    <dmn:context id="_D0D9C4A6-6762-4034-B47F-37EC24E17787">
+      <dmn:contextEntry>
+        <dmn:variable id="_3D0371DD-C060-47F9-99E0-C09AA85488F7" name="Has required products" typeRef="tOrgProduct"/>
+        <dmn:literalExpression id="_CFC70D99-D844-449D-9AA3-8EE386DA7B3B">
+          <dmn:text>Org Products[ list contains(Product Codes, "ICS") and list contains(Product Codes, "IVM") ]</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+      <dmn:contextEntry>
+        <dmn:literalExpression id="_42D913D0-83C3-4006-8ADF-1D31290B7794">
+          <dmn:text>Has required products.Organization Id</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+    </dmn:context>
+  </dmn:decision>
+  <dmn:inputData id="_C62EFDAB-C38B-43EE-8ACE-54D15F4440CC" name="Org Feature Permissions">
+    <dmn:extensionElements/>
+    <dmn:variable id="_21378424-4CBF-4638-80EC-0062403BB5D3" name="Org Feature Permissions" typeRef="tOrgFeaturePermissions"/>
+  </dmn:inputData>
+  <dmn:decision id="_BADD29BE-4072-4519-9EF0-39CCF097D895" name="Orgs with required feature permissions">
+    <dmn:extensionElements/>
+    <dmn:variable id="_DCB74103-1293-4859-AA91-E98738CD77DE" name="Orgs with required feature permissions" typeRef="tOrgList"/>
+    <dmn:informationRequirement id="_1A4B95B7-EB83-43DA-985D-02B2FE98B509">
+      <dmn:requiredInput href="#_C62EFDAB-C38B-43EE-8ACE-54D15F4440CC"/>
+    </dmn:informationRequirement>
+    <dmn:knowledgeRequirement id="_BE3D1E4C-8A20-42A6-9A51-8659E93C74E3">
+      <dmn:requiredKnowledge href="#_606E819B-8228-42A6-A847-E9BBBEF46587"/>
+    </dmn:knowledgeRequirement>
+    <dmn:knowledgeRequirement id="_874D048B-A407-478E-B662-957763923710">
+      <dmn:requiredKnowledge href="#_BC4843E4-BEF2-45C1-B8EF-58DD2B2D5E30"/>
+    </dmn:knowledgeRequirement>
+    <dmn:context id="_42CAA5FC-A093-44C5-B2B1-AFE0B138EF65">
+      <dmn:contextEntry>
+        <dmn:variable id="_DB001B0A-652E-4F76-B42C-246C215895F2" name="Org with required feature permissions" typeRef="tOrgFeaturePermission"/>
+        <dmn:literalExpression id="_A0A1B0BF-8727-453B-9B46-452B38B572FD">
+          <dmn:text>Org Feature Permissions[ some Feature Permission in Feature Permissions satisfies Has Required ICS Permissions(Feature Permission) and some Other Feature Permission in Feature Permissions satisfies Has Required IVM Permissions(Other Feature Permission)]</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+      <dmn:contextEntry>
+        <dmn:literalExpression id="_476D0FBA-43DF-4868-9F29-E083AD01BC67">
+          <dmn:text>Org with required feature permissions.Organization Id</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+    </dmn:context>
+  </dmn:decision>
+  <dmn:businessKnowledgeModel id="_606E819B-8228-42A6-A847-E9BBBEF46587" name="Has Required ICS Permissions">
+    <dmn:extensionElements/>
+    <dmn:variable id="_8E3BCF3A-88E3-4CF5-A7CC-E9CE4BCB1D46" name="Has Required ICS Permissions" typeRef="boolean"/>
+    <dmn:encapsulatedLogic id="_1C0C2050-0DB5-4635-8BCE-752049EE798C" kind="FEEL">
+      <dmn:formalParameter id="_4EDC3FB2-3DD9-42BC-AC40-F82B6E56BA98" name="Feature Permission" typeRef="tFeaturePermission"/>
+      <dmn:decisionTable id="_9EE76721-970C-4922-8663-F5FD6177F542" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row">
+        <dmn:input id="_43A02A0A-E2D1-4F0B-A79E-B8EA1264D629">
+          <dmn:inputExpression id="_C01DE69A-3564-4DA2-8C5A-AEE401E0D038" typeRef="string">
+            <dmn:text>Feature Permission.Feature</dmn:text>
+          </dmn:inputExpression>
+        </dmn:input>
+        <dmn:input id="_719092B8-8664-4A98-B6E7-4DBAF0BB748C">
+          <dmn:inputExpression id="_EE4AD287-81FA-4B35-9879-A651A08EFDF3" typeRef="string">
+            <dmn:text>Feature Permission.Permission</dmn:text>
+          </dmn:inputExpression>
+        </dmn:input>
+        <dmn:output id="_7FCC5936-7964-42F9-BDE6-6BDA8C12FE1D"/>
+        <dmn:annotation name="annotation-1"/>
+        <dmn:rule id="_A56D11AB-BDC5-4FE9-9211-C2FCC049B02F">
+          <dmn:inputEntry id="_319E76BB-FEBD-4359-859E-50D3D3155CC7">
+            <dmn:text>"ICS_EXECUTIVE_VIEW"</dmn:text>
+          </dmn:inputEntry>
+          <dmn:inputEntry id="_BA3F7C99-AEF6-4767-AD5D-3665196273B0">
+            <dmn:text>"ADMINISTER"</dmn:text>
+          </dmn:inputEntry>
+          <dmn:outputEntry id="_2C2DA2DA-BD45-4BE7-9133-AD769F355B00">
+            <dmn:text>true</dmn:text>
+          </dmn:outputEntry>
+          <dmn:annotationEntry>
+            <dmn:text/>
+          </dmn:annotationEntry>
+        </dmn:rule>
+      </dmn:decisionTable>
+    </dmn:encapsulatedLogic>
+  </dmn:businessKnowledgeModel>
+  <dmn:businessKnowledgeModel id="_BC4843E4-BEF2-45C1-B8EF-58DD2B2D5E30" name="Has Required IVM Permissions">
+    <dmn:extensionElements/>
+    <dmn:variable id="_EFAC88B3-AFC2-49D0-8408-2270205C205A" name="Has Required IVM Permissions" typeRef="boolean"/>
+    <dmn:encapsulatedLogic id="_3A357761-B09C-4F52-A2C4-FD4D94DA3909" kind="FEEL">
+      <dmn:formalParameter id="_BD18E7E1-01B2-4D86-BB73-87F0968B84A1" name="Feature Permission" typeRef="tFeaturePermission"/>
+      <dmn:decisionTable id="_BD07419F-6320-4D05-B508-AF63FCAB111F" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row">
+        <dmn:input id="_9CFDB078-8CF4-4B24-B7BC-10B70C5FE919">
+          <dmn:inputExpression id="_3DEB629A-CEE6-4317-91EF-F06018D7C997" typeRef="string">
+            <dmn:text>Feature Permission.Feature</dmn:text>
+          </dmn:inputExpression>
+        </dmn:input>
+        <dmn:input id="_B538090F-2FD1-4DA4-ABFD-A1E24AE84CD7">
+          <dmn:inputExpression id="_CF8BAD75-6F0E-4F48-A109-BF82BD626E91" typeRef="string">
+            <dmn:text>Feature Permission.Permission</dmn:text>
+          </dmn:inputExpression>
+        </dmn:input>
+        <dmn:output id="_01181189-67D1-4835-89C7-480322DB6E7D"/>
+        <dmn:annotation name="annotation-1"/>
+        <dmn:rule id="_BDD201D7-A8E9-4AB4-905B-16FA4B015DD2">
+          <dmn:inputEntry id="_EF3D2233-67BE-44CE-A379-13B51A789476">
+            <dmn:text>"IVM_EXECUTIVE_VIEW"</dmn:text>
+          </dmn:inputEntry>
+          <dmn:inputEntry id="_980A9483-B77B-407B-A79B-C122F15CDA6C">
+            <dmn:text>"ADMINISTER"</dmn:text>
+          </dmn:inputEntry>
+          <dmn:outputEntry id="_CD1C38DF-1F2B-498B-9001-520614770F67">
+            <dmn:text>true</dmn:text>
+          </dmn:outputEntry>
+          <dmn:annotationEntry>
+            <dmn:text/>
+          </dmn:annotationEntry>
+        </dmn:rule>
+      </dmn:decisionTable>
+    </dmn:encapsulatedLogic>
+  </dmn:businessKnowledgeModel>
+  <dmn:decision id="_44B6836D-DAE9-4AB6-A07D-BE526E0E0E65" name="ERV">
+    <dmn:extensionElements/>
+    <dmn:variable id="_194997B7-126B-4125-B420-941148C72A12" name="ERV" typeRef="Any"/>
+    <dmn:informationRequirement id="_D02185BF-856F-4A8F-B659-4C6862CB0C86">
+      <dmn:requiredDecision href="#_BADD29BE-4072-4519-9EF0-39CCF097D895"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_9042F1FC-5B4C-47AC-8FFF-AAD3045321C3">
+      <dmn:requiredDecision href="#_22FDA7FD-3895-4341-A510-A2549238B911"/>
+    </dmn:informationRequirement>
+    <dmn:context id="_4A497D9B-85C9-4C8A-8C8D-7C0E4E4A3A85">
+      <dmn:contextEntry>
+        <dmn:variable id="_7A5C1C23-D4C2-4DF9-8C70-5E46DE137E62" name="Orgs"/>
+        <dmn:literalExpression id="_8CBDD397-C6DC-4919-8E2D-F9D39607EDCC">
+          <dmn:text>Orgs with required feature permissions[ list contains(Orgs with required products, item) ]</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+      <dmn:contextEntry>
+        <dmn:literalExpression id="_DC460989-09D9-4980-A3EF-5C0E10D4420D">
+          <dmn:text>Orgs</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+    </dmn:context>
+  </dmn:decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_83AE38D8-2B73-4333-8CC5-6CA313925B52" name="DRG">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_D0D9C4A6-6762-4034-B47F-37EC24E17787">
+            <kie:width>50</kie:width>
+            <kie:width>184</kie:width>
+            <kie:width>754</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_CFC70D99-D844-449D-9AA3-8EE386DA7B3B">
+            <kie:width>754</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_42D913D0-83C3-4006-8ADF-1D31290B7794">
+            <kie:width>754</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_42CAA5FC-A093-44C5-B2B1-AFE0B138EF65">
+            <kie:width>50</kie:width>
+            <kie:width>278</kie:width>
+            <kie:width>857</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_A0A1B0BF-8727-453B-9B46-452B38B572FD">
+            <kie:width>857</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_476D0FBA-43DF-4868-9F29-E083AD01BC67">
+            <kie:width>857</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_9EE76721-970C-4922-8663-F5FD6177F542">
+            <kie:width>50</kie:width>
+            <kie:width>205</kie:width>
+            <kie:width>165</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_1C0C2050-0DB5-4635-8BCE-752049EE798C">
+            <kie:width>50</kie:width>
+            <kie:width>640</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_BD07419F-6320-4D05-B508-AF63FCAB111F">
+            <kie:width>50</kie:width>
+            <kie:width>192</kie:width>
+            <kie:width>244</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_3A357761-B09C-4F52-A2C4-FD4D94DA3909">
+            <kie:width>50</kie:width>
+            <kie:width>706</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_4A497D9B-85C9-4C8A-8C8D-7C0E4E4A3A85">
+            <kie:width>50</kie:width>
+            <kie:width>120</kie:width>
+            <kie:width>555</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_8CBDD397-C6DC-4919-8E2D-F9D39607EDCC">
+            <kie:width>555</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_DC460989-09D9-4980-A3EF-5C0E10D4420D">
+            <kie:width>555</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="dmnshape-drg-_A687CFD6-F668-42E5-B2F1-D4613329D61A" dmnElementRef="_A687CFD6-F668-42E5-B2F1-D4613329D61A" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="639" y="443" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_22FDA7FD-3895-4341-A510-A2549238B911" dmnElementRef="_22FDA7FD-3895-4341-A510-A2549238B911" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="626" y="313" width="127" height="51"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_C62EFDAB-C38B-43EE-8ACE-54D15F4440CC" dmnElementRef="_C62EFDAB-C38B-43EE-8ACE-54D15F4440CC" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="391" y="438" width="120" height="60"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_BADD29BE-4072-4519-9EF0-39CCF097D895" dmnElementRef="_BADD29BE-4072-4519-9EF0-39CCF097D895" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="382" y="313" width="139" height="51"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_606E819B-8228-42A6-A847-E9BBBEF46587" dmnElementRef="_606E819B-8228-42A6-A847-E9BBBEF46587" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="144.34579439252337" y="250.68421052631578" width="137" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_BC4843E4-BEF2-45C1-B8EF-58DD2B2D5E30" dmnElementRef="_BC4843E4-BEF2-45C1-B8EF-58DD2B2D5E30" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="145" y="375" width="137" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_44B6836D-DAE9-4AB6-A07D-BE526E0E0E65" dmnElementRef="_44B6836D-DAE9-4AB6-A07D-BE526E0E0E65" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="524" y="163" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-drg-_453F472A-CE47-4392-9DB3-CC7704125A02-AUTO-SOURCE-AUTO-TARGET" dmnElementRef="_453F472A-CE47-4392-9DB3-CC7704125A02">
+        <di:waypoint x="689" y="443"/>
+        <di:waypoint x="689.5" y="364"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_1A4B95B7-EB83-43DA-985D-02B2FE98B509-AUTO-SOURCE-AUTO-TARGET" dmnElementRef="_1A4B95B7-EB83-43DA-985D-02B2FE98B509">
+        <di:waypoint x="451" y="438"/>
+        <di:waypoint x="451.5" y="364"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_BE3D1E4C-8A20-42A6-9A51-8659E93C74E3" dmnElementRef="_BE3D1E4C-8A20-42A6-9A51-8659E93C74E3">
+        <di:waypoint x="212.84579439252337" y="275.6842105263158"/>
+        <di:waypoint x="382" y="338.5"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_874D048B-A407-478E-B662-957763923710" dmnElementRef="_874D048B-A407-478E-B662-957763923710">
+        <di:waypoint x="213.5" y="400"/>
+        <di:waypoint x="382" y="338.5"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_D02185BF-856F-4A8F-B659-4C6862CB0C86" dmnElementRef="_D02185BF-856F-4A8F-B659-4C6862CB0C86">
+        <di:waypoint x="451.5" y="338.5"/>
+        <di:waypoint x="574" y="213"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_9042F1FC-5B4C-47AC-8FFF-AAD3045321C3" dmnElementRef="_9042F1FC-5B4C-47AC-8FFF-AAD3045321C3">
+        <di:waypoint x="689.5" y="338.5"/>
+        <di:waypoint x="574" y="213"/>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn:definitions>
