@@ -69,7 +69,7 @@
         </dmn:inputExpression>
       </dmn:input>
       <dmn:input id="_7BDDEA86-9300-42CE-82C1-62B51D677411">
-        <dmn:inputExpression typeRef="boolean">
+        <dmn:inputExpression id="_CD8F2C0B-BDB3-442D-9624-A2143748C3BA" typeRef="boolean">
           <dmn:text>Is IDR Admin</dmn:text>
         </dmn:inputExpression>
       </dmn:input>
@@ -101,6 +101,13 @@
       <dmn:text>list contains(root.roleNames, "INSIGHT_IDR_ADMIN")</dmn:text>
     </dmn:literalExpression>
   </dmn:decision>
+  <dmn:knowledgeSource id="_238FE643-6EE3-4B6E-81ED-E6347D60141A" name="iPIMS UAP" locationURI="">
+    <dmn:extensionElements/>
+    <dmn:authorityRequirement id="_2427FEF5-A463-442F-8FE8-2E5775FCA779">
+      <dmn:requiredInput href="#_2FB31174-6875-4164-AF7C-5D01D5461822"/>
+    </dmn:authorityRequirement>
+    <dmn:type/>
+  </dmn:knowledgeSource>
   <dmndi:DMNDI>
     <dmndi:DMNDiagram id="_83AE38D8-2B73-4333-8CC5-6CA313925B52" name="DRG">
       <di:extension>
@@ -144,6 +151,15 @@
         <dc:Bounds x="809" y="459" width="100" height="50"/>
         <dmndi:DMNLabel/>
       </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_238FE643-6EE3-4B6E-81ED-E6347D60141A" dmnElementRef="_238FE643-6EE3-4B6E-81ED-E6347D60141A" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="411" y="600" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
       <dmndi:DMNEdge id="dmnedge-drg-_20209653-CB47-42DB-96F8-A4FFC585F323-AUTO-SOURCE-AUTO-TARGET" dmnElementRef="_20209653-CB47-42DB-96F8-A4FFC585F323">
         <di:waypoint x="683" y="600"/>
         <di:waypoint x="683" y="387"/>
@@ -155,6 +171,10 @@
       <dmndi:DMNEdge id="dmnedge-drg-_495FCFEC-DD27-47BC-81FE-0C48E148DA3F-AUTO-SOURCE-AUTO-TARGET" dmnElementRef="_495FCFEC-DD27-47BC-81FE-0C48E148DA3F">
         <di:waypoint x="683" y="600"/>
         <di:waypoint x="859" y="509"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_2427FEF5-A463-442F-8FE8-2E5775FCA779" dmnElementRef="_2427FEF5-A463-442F-8FE8-2E5775FCA779">
+        <di:waypoint x="683" y="625"/>
+        <di:waypoint x="511" y="625"/>
       </dmndi:DMNEdge>
     </dmndi:DMNDiagram>
   </dmndi:DMNDI>
