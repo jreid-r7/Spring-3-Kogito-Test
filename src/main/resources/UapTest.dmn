@@ -73,6 +73,11 @@
           <dmn:text>Is IDR Admin</dmn:text>
         </dmn:inputExpression>
       </dmn:input>
+      <dmn:input id="_3BF21ADC-482B-46FA-86C9-3E64AD99810E">
+        <dmn:inputExpression typeRef="string">
+          <dmn:text>get value(get value(root.features, "field"), "permission")</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
       <dmn:output id="_59668DFA-06D1-4F2C-B9F7-17666F913EF2"/>
       <dmn:annotation name="annotation-1"/>
       <dmn:rule id="_E236D474-F809-471B-ABA7-9AE783F8946F">
@@ -81,6 +86,9 @@
         </dmn:inputEntry>
         <dmn:inputEntry id="_8F815FC9-C774-42E4-843E-3D9CCC457DC9">
           <dmn:text>true</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_049B37A1-4530-4706-BFA3-7ABD63E1EB5B">
+          <dmn:text>"ADMINISTER"</dmn:text>
         </dmn:inputEntry>
         <dmn:outputEntry id="_359B116D-64D3-4FCD-ABC6-7C2AF1EA581C">
           <dmn:text>"Has product token"</dmn:text>
@@ -116,6 +124,7 @@
             <kie:width>50</kie:width>
             <kie:width>150</kie:width>
             <kie:width>100</kie:width>
+            <kie:width>262</kie:width>
             <kie:width>196</kie:width>
             <kie:width>100</kie:width>
           </kie:ComponentWidths>
