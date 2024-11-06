@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_99935616-5B38-4079-98F9-5CC2605023B9" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_2B2806A1-5D1A-4207-99D3-102C715B1B2F" name="UapTest" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_99935616-5B38-4079-98F9-5CC2605023B9">
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://rapid7.com/dmn/_99935616-5B38-4079-98F9-5CC2605023B9" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_2B2806A1-5D1A-4207-99D3-102C715B1B2F" name="UapTest" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://rapid7.com/dmn/_99935616-5B38-4079-98F9-5CC2605023B9">
   <dmn:extensionElements/>
   <dmn:itemDefinition id="_E2057E0B-FF2A-42A0-A43A-CCAB72E610D9" name="tUAP" isCollection="false">
     <dmn:itemComponent id="_CE555D7C-B721-47E4-A7D7-DCABB684C401" name="uapType" isCollection="false">
@@ -74,8 +74,8 @@
         </dmn:inputExpression>
       </dmn:input>
       <dmn:input id="_3BF21ADC-482B-46FA-86C9-3E64AD99810E">
-        <dmn:inputExpression typeRef="string">
-          <dmn:text>get value(get value(root.features, "field"), "permission")</dmn:text>
+        <dmn:inputExpression id="_FC8A3647-DB74-4DD0-A9ED-B63B0466F780" typeRef="string">
+          <dmn:text>get value(get value(root.features, "LOGS_CONTROL"), "permission")</dmn:text>
         </dmn:inputExpression>
       </dmn:input>
       <dmn:output id="_59668DFA-06D1-4F2C-B9F7-17666F913EF2"/>
